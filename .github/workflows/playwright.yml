@@ -17,10 +17,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
@@ -29,7 +29,7 @@ jobs:
         run: npx playwright test
 
       - name: Upload Test Artifacts
-        if: failure()
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: playwright-report
